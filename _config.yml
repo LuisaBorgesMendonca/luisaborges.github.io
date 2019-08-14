@@ -28,6 +28,7 @@ github_username:  jekyll
 markdown: kramdown
 plugins:
   - jekyll-feed
+exclude: ["node_modules", "gulpfile.js", "package.json"]
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
