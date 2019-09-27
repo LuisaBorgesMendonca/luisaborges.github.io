@@ -1,16 +1,68 @@
 ---
 layout: post
-title:  "Blog entry one"
-date:   2015-10-26 16:51:11
+title:  "Projeto Angular CLI com Docker"
+date:   2019-09-27 14:00:00
 categories: blog
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget libero vel turpis eleifend convallis vel vitae est. Suspendisse mattis ut nulla dapibus ultricies. Suspendisse feugiat felis mi, sit amet pharetra massa volutpat sit amet. Morbi gravida, libero sit amet lacinia tristique, ipsum lacus fermentum eros, ut sollicitudin lacus massa ut leo. In quis urna eu lorem sagittis posuere. Pellentesque tempus consequat urna. Pellentesque blandit elit ac nulla semper vestibulum. Quisque ultrices vestibulum nisi, nec rhoncus est viverra eget. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+#####Projeto Angular CLI com Docker
+---
+#####Pré-requisitos:
+-	Node 8+
+-	Angular CLI
+-	Docker V18+
+-	Preferencialmente: Linux
 
-Suspendisse egestas sit amet tellus non bibendum. Donec a pellentesque elit. Donec eu ex nec urna semper dignissim non eget magna. Maecenas facilisis nunc eu mi auctor eleifend. Praesent ut sollicitudin ligula, dignissim consectetur purus. Pellentesque sed ligula sapien. Ut non placerat risus. Aliquam posuere, odio ut semper hendrerit, lectus leo maximus orci, vel condimentum tortor ipsum id lacus. Sed lacinia magna nec tortor sollicitudin, ut tempor mi pretium. In in lacus sed mi aliquet scelerisque. Maecenas nisl mauris, euismod ac ultrices vel, molestie eu massa. Phasellus maximus ultrices facilisis. Integer imperdiet ut felis ac tempor. Pellentesque auctor turpis at turpis cursus consequat. Quisque eget euismod elit, et varius justo. Maecenas porttitor lobortis sem sit amet lacinia.
+#####Instalar o node:
+-   [https://nodejs.org](https://nodejs.org/en/download/)
 
-Integer bibendum enim nec neque vulputate, in commodo elit mollis. Proin convallis, justo ac ornare porta, velit mauris tristique sapien, quis egestas nisl nisi in mi. Mauris vulputate orci a nulla eleifend malesuada. Aenean eget dictum risus, at semper ligula. Donec sit amet sodales ante. In hac habitasse platea dictumst. Praesent sagittis ipsum sem, nec pulvinar ante semper et. Pellentesque felis ante, posuere in placerat vitae, mollis quis est. Duis at risus et mi eleifend condimentum id ut turpis. Quisque rhoncus tristique felis sit amet convallis. Praesent ornare, lorem sed cursus facilisis, quam velit posuere massa, in congue mi nisl vel lectus. Nullam mi nisl, iaculis eu ornare ut, faucibus quis odio. Aliquam dapibus purus sed libero pretium congue. Nullam convallis eros eu cursus vehicula. Proin facilisis tempor lorem, nec varius ante luctus dapibus. Cras ornare eget tortor eu molestie.
+#####Instalar o Angular(local):
+    npm install -g @angular/cli
 
-Praesent porttitor risus elit, ac dignissim lorem auctor at. Donec viverra metus et leo congue semper. Vestibulum in massa vitae mauris imperdiet tincidunt. Nullam congue felis massa, et ultrices ipsum imperdiet finibus. Aenean pulvinar enim a congue viverra. Phasellus maximus augue nec eleifend dapibus. Nulla sit amet nulla nec sem venenatis auctor ut sit amet leo. Sed interdum, lectus in dictum condimentum, enim nisi mollis libero, id rhoncus lectus urna et mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean vehicula bibendum justo vehicula efficitur. Sed in accumsan orci, at finibus diam. Morbi nibh nulla, iaculis at nibh et, gravida dapibus dui. Morbi suscipit bibendum nisl, et pulvinar neque pellentesque sed.
+#####Criar novo projeto:
+    ng new angularproject
 
-Ut mattis sem a nunc maximus pulvinar. Morbi blandit nec velit vel dignissim. Suspendisse congue congue pharetra. Cras dolor nibh, congue eu libero ut, porttitor porta metus. Morbi a porta ex. Nulla eget nisl eu turpis convallis sollicitudin. Curabitur varius tellus in metus aliquam tincidunt. Aliquam condimentum tempor sodales. In aliquet dolor gravida arcu ultrices, eu cursus quam feugiat. Nunc auctor, nisi id pellentesque venenatis, diam sapien laoreet ante, nec tempus tortor mi ultrices ligula. Donec a felis sed quam convallis ultricies. Praesent ut arcu eget lectus gravida molestie. Curabitur suscipit nisi enim, ut efficitur enim congue nec. Vestibulum egestas finibus nunc, sit amet lacinia sem sodales ac. Quisque dui felis, mattis id mauris eu, tempus volutpat arcu. Quisque a volutpat ligula, in sagittis metus.
+#####Navegar ao projeto:
+    cd angularproject
+
+#####Criar uma imagem Docker:
+    vim Dockerfile
+
+#####Configurar imagem:
+    FROM node:8
+    RUN mkdir /usr/src/app
+    WORKDIR /usr/src/app
+    RUN npm install -g @angular/cli
+    COPY . .
+
+#####Criar docker-compose:
+    cd ../
+    vim docker-compose.yml
+
+#####Configurar docker-compose:
+    version: '3.5' # Definir versão atual
+    services: # Definir services
+      angular-service: # Nome da service
+        container_name: angularcontainer # Nome do container
+        build: ./angularproject # Localicação DockerfileW
+        volumes: # Volumes
+          - './angularproject:/usr/src/app'
+        ports:
+          - '4200:4200' # Porta
+        command: >
+          bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+
+#####Executar container e abrir o bash:
+    docker exec -it nome_do_container /bin/bash
+
+#####Rodar docker compose
+    docker-compose up --build -d
+
+#####Monitorar containers:
+    docker ps
+
+#####Monitorar imagens:
+    docker images
+
+#####Parar container:
+    docker container stop nome_do_container

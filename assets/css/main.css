@@ -55,6 +55,12 @@ video {
   vertical-align: baseline;
   /* 2 */ }
 
+canvas {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
 /**
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
@@ -637,8 +643,10 @@ h2, header nav a, header .kicker, footer .lockup a, #h_small #nav_small a, #h_sm
     margin: 30px 0 0 30px; } }
 
 header {
-  background: url(../img/galway2.jpg) center center;
-  background-size: cover; }
+  background-color: #150a1e;
+  background-size: cover;
+  position: relative;
+  }
   @media only screen and (min-width: 220px) {
     header {
       height: 300px; } }
@@ -647,13 +655,16 @@ header {
       height: 390px; } }
   @media only screen and (min-width: 1070px) {
     header {
-      height: 450px; } }
+      height: 450px; }
+    }
   header nav {
     float: right;
+    position: relative;
+    z-index: 99;
     margin: 30px 30px 30px; }
     header nav a {
       margin-left: 20px;
-      color: rgba(0, 0, 0, 0.5); }
+      color: #fff; }
       @media only screen and (min-width: 220px) {
         header nav a {
           display: none; } }
@@ -661,10 +672,11 @@ header {
         header nav a {
           display: inline-block; } }
       header nav a:hover {
-        color: black; }
+        color: rgba(139, 134, 134, 0.897);
+        }
   header h1 {
     text-align: center;
-    color: rgba(0, 0, 0, 0.5);
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.05cm;
     margin-bottom: 20px;
@@ -687,7 +699,8 @@ header {
     header h1 span {
       display: inline-block;
       padding: 0.2em 0.5em;
-      border: rgba(0, 0, 0, 0.5) solid 10px; }
+      border: #fff solid 10px;
+      }
       @media only screen and (min-width: 220px) {
         header h1 span {
           padding: 0.2em 0.5em; } }
@@ -700,11 +713,13 @@ header {
   header .kicker {
     text-align: center;
     line-height: 1;
-    color: rgba(0, 0, 0, 0.5); }
+    color: #fff; }
 
 footer {
-  background: url(../img/galway3.jpg) center center;
-  background-size: cover; }
+  background-color: #150a1e;
+  background-size: cover;
+  position: relative; 
+}
   footer .lockup {
     padding: 50px 30px; }
     footer .lockup::after {
@@ -715,13 +730,13 @@ footer {
       margin: 0;
       text-transform: uppercase;
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.4); }
+      color: #fff; }
     footer .lockup a {
-      color: rgba(0, 0, 0, 0.6);
+      color: #fff;
       display: inline-block;
       margin-right: 30px; }
       footer .lockup a:hover {
-        color: black; }
+        color: rgba(139, 134, 134, 0.897); }
 
 @media only screen and (min-width: 220px) {
   .about-lock {
@@ -1376,17 +1391,21 @@ form {
 
 #h_small {
   height: 170px;
-  background: url(../img/galway2.jpg) center center;
-  background-size: cover; }
+  position: relative;
+  background-color: #150a1e;
+  background-size: cover
+}
   #h_small #nav_small {
     float: right;
     margin: 30px 30px 30px; }
     #h_small #nav_small a {
       display: inline-block;
       margin-left: 10px;
-      color: rgba(0, 0, 0, 0.5); }
+      color: rgba(243, 239, 239, 0.904);
+      }
       #h_small #nav_small a:hover {
-        color: black; }
+        color: rgba(139, 134, 134, 0.897);
+        }
   #h_small #h1_small {
     display: inline-block;
     font-size: 72px;
@@ -1440,3 +1459,12 @@ form {
 
 .temp-posts {
   margin-bottom: 350px; }
+
+article pre {
+  padding: 7px;
+  font-family: monospace, monospace;
+  font-size: .8em;
+  background-color: #080910;
+  border-radius: 5px;
+  color: #ccc;
+}

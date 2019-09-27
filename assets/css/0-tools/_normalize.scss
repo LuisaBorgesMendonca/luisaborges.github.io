@@ -58,6 +58,11 @@ video {
   display: inline-block; /* 1 */
   vertical-align: baseline; /* 2 */
 }
+canvas{
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
 
 /**
  * Prevent modern browsers from displaying `audio` without controls.

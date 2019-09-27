@@ -4,12 +4,9 @@ comments: true
 ---
 
 {% include header_small.html %}
-
-
 <script type="text/javascript">
 			// needs to be a string for jquery.cookie
 			var postId = '1';
-			$(function()
 			{
 				// initialize kudos
 				$("figure.kudoable").kudoable();
@@ -51,7 +48,8 @@ comments: true
 					// remove cookie
 					$.removeCookie(postId);
 				});
-			});
+			};
+
 		</script>
 
 
