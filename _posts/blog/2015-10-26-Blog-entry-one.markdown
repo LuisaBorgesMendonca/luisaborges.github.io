@@ -17,7 +17,9 @@ categories: blog
 -   [https://nodejs.org](https://nodejs.org/en/download/)
 
 #####Instalar o Angular(local):
+```sh
     npm install -g @angular/cli
+```
 
 #####Criar novo projeto:
     ng new angularproject
