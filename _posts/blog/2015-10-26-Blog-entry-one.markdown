@@ -5,6 +5,7 @@ date:   2019-09-27 14:00:00 -0300
 categories: blog
 ---
 
+---
 #####Projeto Angular CLI com Docker
 ---
 #####Pré-requisitos:
@@ -68,3 +69,5 @@ categories: blog
 
 #####Parar container:
     docker container stop nome_do_container
+
+---
