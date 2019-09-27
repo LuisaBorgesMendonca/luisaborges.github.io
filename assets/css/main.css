@@ -595,7 +595,7 @@ h2 {
   h2 {
     padding: 50px 0 50px; } }
 
-h2, header nav a, header .kicker, footer .lockup a, #h_small #nav_small a, #h_small .kicker {
+h2, header nav a, header .kicker, footer .lockup a, footer nav, footer nav a #h_small #nav_small a, #h_small .kicker {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase; }
@@ -720,6 +720,7 @@ footer {
   background-size: cover;
   position: relative; 
 }
+
   footer .lockup {
     padding: 50px 30px; }
     footer .lockup::after {
@@ -731,10 +732,17 @@ footer {
       text-transform: uppercase;
       font-size: 12px;
       color: #fff; }
+      footer nav {
+        position: relative;
+        z-index: 99;}
+        footer nav a {
+            display: inline-block;
+        }
     footer .lockup a {
       color: #fff;
       display: inline-block;
-      margin-right: 30px; }
+      margin-right: 30px;
+      }
       footer .lockup a:hover {
         color: rgba(139, 134, 134, 0.897); }
 
