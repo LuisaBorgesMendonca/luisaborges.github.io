@@ -6,43 +6,54 @@ categories: blog
 ---
 
 ---
-#####Projeto Angular CLI com Docker
+## Projeto Angular CLI com Docker
 ---
-#####Pré-requisitos:
+## Pré-requisitos:
 -	Node 8+
 -	Angular CLI
 -	Docker V18+
 -	Preferencialmente: Linux
 
-#####Instalar o node:
+## Instalar o node:
 -   [https://nodejs.org](https://nodejs.org/en/download/)
 
-#####Instalar o Angular(local):
+## Instalar o Angular(local):
 ```sh
     npm install -g @angular/cli
 ```
 
-#####Criar novo projeto:
+## Criar novo projeto:
+```sh
     ng new angularproject
+```
 
-#####Navegar ao projeto:
+## Navegar ao projeto:
+```sh
     cd angularproject
+```
 
-#####Criar uma imagem Docker:
+## Criar uma imagem Docker:
+```sh
     vim Dockerfile
+```
 
-#####Configurar imagem:
+## Configurar imagem:
+```docker
     FROM node:8
     RUN mkdir /usr/src/app
     WORKDIR /usr/src/app
     RUN npm install -g @angular/cli
     COPY . .
+```
 
-#####Criar docker-compose:
+## Criar docker-compose:
+```sh
     cd ../
     vim docker-compose.yml
+```
 
-#####Configurar docker-compose:
+## Configurar docker-compose:
+```docker
     version: '3.5' # Definir versão atual
     services: # Definir services
       angular-service: # Nome da service
@@ -54,20 +65,31 @@ categories: blog
           - '4200:4200' # Porta
         command: >
           bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+```
 
-#####Executar container e abrir o bash:
+## Executar container e abrir o bash:
+```docker
     docker exec -it nome_do_container /bin/bash
+```
 
-#####Rodar docker compose
+## Rodar docker compose
+```docker
     docker-compose up --build -d
+```
 
-#####Monitorar containers:
+## Monitorar containers:
+```docker
     docker ps
+```
 
-#####Monitorar imagens:
+## Monitorar imagens:
+```docker
     docker images
+```
 
-#####Parar container:
+## Parar container:
+```docker
     docker container stop nome_do_container
+```
 
 ---
